@@ -87,13 +87,9 @@
       background-color: #d57d59;
     }
 
-    .flash-message {
-      font-size: 20px;
-      text-shadow: 2px 2px 4px #000000;
-      margin-bottom: 20px;
-      background-color: rgba(0, 0, 0, 0.3);
-      padding: 10px;
-      border-radius: 5px;
+    .error-message {
+      color: red;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -102,21 +98,22 @@
     <div class="background-image">
       <h1>Ahoy Hoy!</h1>
       <h2>Text your mateys a random pirate insult by entering their phone number below</h2>
-      
-      <% if flash[:notice] %>
-        <p class="flash-message"><%= flash[:notice] %></p>
+    </div>
+
+    <%= form_tag(send_sms_path, method: :post) do %>
+      <div>
+        <%= label_tag 'Phone Number of the Scallywag you want to Insult:' %>
+        <%= text_field_tag 'phone_number', '', placeholder: 'Phone Number', required: true %>
+      </div>
+
+      <% if flash[:alert] %>
+        <div class="error-message">
+          <%= flash[:alert] %>
+        </div>
       <% end %>
 
-      <%= form_tag(send_sms_path, method: :post) do %>
-        <div>
-          <%= label_tag 'Phone Number of the Scallywag you want to diss!' %>
-          <%= text_field_tag 'phone_number' %>
-        </div>
-        <div>
-          <%= submit_tag 'YARRRRR!' %>
-        </div>
-      <% end %>
-    </div>
+      <%= submit_tag 'Text Insult', class: 'submit-button' %>
+    <% end %>
   </div>
 </body>
 </html>
