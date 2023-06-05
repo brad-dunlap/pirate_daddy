@@ -10,10 +10,12 @@ class UsersController < ApplicationController
 
     begin
       send_sms_message(phone_number, insult)
-      redirect_to root_path, notice: 'Yer insult be sent, Matey!'
+      flash[:notice] = 'Yer insult be sent, Matey!'
     rescue Twilio::REST::RestError => e
-      redirect_to root_path, alert: "Invalid Phone Number"
+      flash[:alert] = 'Invalid Phone Number'
     end
+
+    redirect_to root_path
   end
 
   private

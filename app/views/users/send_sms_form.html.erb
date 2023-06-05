@@ -106,11 +106,17 @@
         <%= text_field_tag 'phone_number', '', placeholder: 'Phone Number', required: true %>
       </div>
 
-      <% if flash[:alert] %>
-        <div class="error-message">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
+      <% if flash[:notice] %>
+  <div class="notice-message">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="error-message">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
       <%= submit_tag 'Text Insult', class: 'submit-button' %>
     <% end %>
