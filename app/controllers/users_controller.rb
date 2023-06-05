@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     # Use Twilio to send the insult to the provided phone number
     send_sms_message(phone_number, insult)
 
-    redirect_to root_path, notice: 'Yer insult be sent, Matey!'
+    flash[:notice] = 'Yer insult be sent, Matey!'
+    redirect_to root_path
   end
 
   private
