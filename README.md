@@ -11,7 +11,8 @@
 
   <div align="center">
     <br>
-    <p> The Pirate Daddy app lets you enter a phone number, and send a random pirate insult. This app was created during a Hackathon Event at Turing School of Software and Design.</p>
+    <p> The Pirate Daddy app allows users to input a phone number and receive a random pirate insult via text message. If they text back, they will receive a response telling them to visit the app. Users can also call the associated number to hear a funny voice message.
+This app was created during a Hackathon Event at Turing School of Software and Design.</p>
     <br />
     <a href="https://https://github.com/GreenGogh47/pirate_daddy/issues">Report Bug</a>
     ·
