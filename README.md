@@ -11,7 +11,8 @@
 
   <div align="center">
     <br>
-    <p> The Pirate Daddy app lets you enter a phone number, and send a random pirate insult. This app was created during a Hackathon Event at Turing School of Software and Design.</p>
+    <p> The Pirate Daddy app allows users to input a phone number and receive a random pirate insult via text message. If they text back, they will receive a response telling them to visit the app. Users can also call the associated number to hear a funny voice message.
+This app was created during a Hackathon Event at Turing School of Software and Design.</p>
     <br />
     <a href="https://https://github.com/GreenGogh47/pirate_daddy/issues">Report Bug</a>
     ·
@@ -44,6 +45,19 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+
+Pirate Daddy is a fun and entertaining project that brings pirate-themed humor to your daily life. Created during a Hackathon Event at Turing School of Software and Design, this app aims to delight users with its unique features.
+
+Using the Pirate Insult API, Pirate Daddy generates random pirate insults and delivers them via text message. Users simply enter their phone number, and Twilio handles the delivery of witty insults to their device. If users reply, they receive a clever response inviting them to explore the app.
+
+Pirate Daddy also offers a hilarious voice message that can be accessed by calling the associated number. Twilio handles the call and plays a pre-recorded message filled with entertaining pirate tales.
+
+Built with Ruby on Rails and PostgreSQL, Pirate Daddy ensures a seamless user experience. Testing was performed using popular frameworks like Faker, Factory Bot, RSpec, Shoulda Matchers, and SimpleCov.
+
+Embark on a thrilling journey with Pirate Daddy and let the pirate insults and amusing voice messages bring laughter to your day!
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- ADD PROJECT DESCRIPTION -->
 

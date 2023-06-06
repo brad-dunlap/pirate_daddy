@@ -7,10 +7,15 @@ class UsersController < ApplicationController
   def send_sms
     phone_number = params[:phone_number]
     insult = InsultService.new.get_insult
-    # Use Twilio to send the insult to the provided phone number
-    send_sms_message(phone_number, insult)
 
-    redirect_to root_path, notice: 'Yer insult be sent, Matey!'
+    begin
+      send_sms_message(phone_number, insult)
+      flash[:notice] = 'Yer insult be sent, Matey!'
+    rescue Twilio::REST::RestError => e
+      flash[:alert] = 'Invalid Phone Number'
+    end
+
+    redirect_to root_path
   end
 
   private

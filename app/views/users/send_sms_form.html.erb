@@ -3,50 +3,67 @@
 <html>
 <head>
   <title>Pirate Daddy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      color: #D9F7F2;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      height: 100vh;
+    }
+
+    .background-image {
       background-image: url("https://img.freepik.com/free-vector/old-broken-pirate-ship-after-shipwreck-beach_107791-14739.jpg?w=740&t=st=1685997021~exp=1685997621~hmac=9b97de61356dd1c4824f6f3aaffdc85d7a3db00548af8fe4069db64cd8bc5cd4");
       background-repeat: no-repeat;
       background-size: cover;
-      color: #D9F7F2;
-      text-align: center;
-      font-family: 'Arial', sans-serif;
+      background-position: center;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     h1 {
-      font-size: 40px;
-      margin-top: 100px;
+      font-size: 30px;
       text-shadow: 2px 2px 4px #000000;
-      display: inline-block;
+      background-color: rgba(0, 0, 0, 0.3);
       padding: 10px;
-    }
-
-    h1 span {
-      border: 1px solid black;
-      padding: 5px;
       border-radius: 5px;
     }
 
     h2 {
-      font-size: 30px;
-      margin-bottom: 50px;
+      font-size: 20px;
       text-shadow: 2px 2px 4px #000000;
-      display: inline-block;
+      margin-bottom: 30px;
+      background-color: rgba(0, 0, 0, 0.3);
       padding: 10px;
-    }
-
-    h2 span {
-      border: 1px solid black;
-      padding: 5px;
       border-radius: 5px;
     }
 
+    .confirmation-message {
+      font-size: 18px;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
     form {
-      display: inline-block;
       background-color: #394e64;
       padding: 20px;
       border-radius: 10px;
-      margin-top: 50px;
+      max-width: 300px;
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     label {
@@ -59,7 +76,8 @@
       font-size: 16px;
       border-radius: 5px;
       border: none;
-      width: 250px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     input[type="submit"] {
@@ -70,10 +88,16 @@
       border-radius: 5px;
       border: none;
       cursor: pointer;
+      width: 100%;
     }
 
     input[type="submit"]:hover {
       background-color: #d57d59;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -83,14 +107,21 @@
   <h2>Prepare to unleash the scurviest of insults upon your landlubber friends,  as we bring you the finest booty of pirate-themed texts to make 'em walk the plank of embarrassment!</h2>
 	<br>
 
-  <%= form_tag(send_sms_path, method: :post) do %>
-    <div>
-      <%= label_tag 'Phone Number of the Scallywag you want to diss! ' %>
-      <%= text_field_tag 'phone_number' %>
+      <%= form_tag(send_sms_path, method: :post) do %>
+        <div>
+          <%= label_tag 'Phone Number of the Scallywag you want to Insult:' %>
+          <%= text_field_tag 'phone_number', '', placeholder: 'Phone Number', required: true %>
+        </div>
+
+        <% if flash[:alert] %>
+          <div class="error-message">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+
+        <%= submit_tag 'Text Insult', class: 'submit-button' %>
+      <% end %>
     </div>
-    <div>
-      <%= submit_tag 'YARRRRR!' %>
-    </div>
-  <% end %>
+  </div>
 </body>
 </html>
