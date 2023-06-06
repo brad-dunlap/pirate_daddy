@@ -13,17 +13,22 @@
       text-align: center;
     }
 
-    .container {
-      position: relative;
-      height: 100vh;
-    }
-
-    .background-image {
+    body.background-image {
       background-image: url("https://img.freepik.com/free-vector/old-broken-pirate-ship-after-shipwreck-beach_107791-14739.jpg?w=740&t=st=1685997021~exp=1685997621~hmac=9b97de61356dd1c4824f6f3aaffdc85d7a3db00548af8fe4069db64cd8bc5cd4");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      position: relative;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -36,6 +41,7 @@
       background-color: rgba(0, 0, 0, 0.3);
       padding: 10px;
       border-radius: 5px;
+      margin-bottom: 10px;
     }
 
     h2 {
@@ -55,15 +61,22 @@
       margin-bottom: 20px;
     }
 
+    .flash-notice {
+      font-size: 20px;
+      text-shadow: 2px 2px 4px #000000;
+      margin-bottom: 30px;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
     form {
       background-color: #394e64;
       padding: 20px;
       border-radius: 10px;
       max-width: 300px;
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
+      margin-top: auto;
+      margin-bottom: 30px;
     }
 
     label {
@@ -101,27 +114,33 @@
     }
   </style>
 </head>
-<body>
-  <h1>Ahoy Hoy!</h1>
-	<br>
-  <h2>Insult your mateys!</h2>
-	<br>
+<body class="background-image">
+  <h1>Ahoy, mateys!</h1>
+  <br>
+  <h2>Prepare to unleash the scurviest of insults upon your landlubber friends, as we bring you the finest booty of pirate-themed texts to make 'em walk the plank of embarrassment!</h2>
+  <br>
 
-      <%= form_tag(send_sms_path, method: :post) do %>
-        <div>
-          <%= label_tag 'Phone Number of the Scallywag you want to Insult:' %>
-          <%= text_field_tag 'phone_number', '', placeholder: 'Phone Number', required: true %>
+  <div class="container">
+    <% if flash[:notice] %>
+      <div class="flash-notice">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= form_tag(send_sms_path, method: :post) do %>
+      <div>
+        <%= label_tag 'Phone Number of the Scallywag you want to Insult:' %>
+        <%= text_field_tag 'phone_number', '', placeholder: 'Phone Number', required: true %>
+      </div>
+
+      <% if flash[:alert] %>
+        <div class="error-message">
+          <%= flash[:alert] %>
         </div>
-
-        <% if flash[:alert] %>
-          <div class="error-message">
-            <%= flash[:alert] %>
-          </div>
-        <% end %>
-
-        <%= submit_tag 'Text Insult', class: 'submit-button' %>
       <% end %>
-    </div>
+
+      <%= submit_tag 'Text Insult', class: 'submit-button' %>
+    <% end %>
   </div>
 </body>
 </html>
